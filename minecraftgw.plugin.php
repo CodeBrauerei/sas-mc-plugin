@@ -272,7 +272,7 @@ echo trim($value) . "\n";
             <?php
             break;
         case '6':
-            if (isset($_POST[''])) {
+            if (isset($_POST['del'])) {
                 $server->execute('rm -r /var/bukkit');
             }
             ?>
