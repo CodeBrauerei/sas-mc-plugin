@@ -3,7 +3,7 @@ SAS-Minecraft-Plugin
 
 Server-Admin-System - Plugin für Minecraft
 
-__ geplante Funktionen:__
+**geplante Funktionen:**
 
 * aktuellsten Bukkit-Server aufsetzen
 * Server steuern (an/aus)
