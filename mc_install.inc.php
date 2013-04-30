@@ -20,21 +20,30 @@ if (isset($_POST['script'])) {
         if (isset($_POST['onlinemode'])) {
 $script = '
 #!/bin/sh
-cd \"\${0%/*}\"; java -Xms'.$_POST['mem'].'M -Xmx'.$_POST['mem'].'M -jar craftbukkit.jar -o true
+BINDIR=\$(dirname \"\$(readlink -fn \"\$0\")\")
+cd \"\$BINDIR\"
+java -Xms'.$_POST['mem'].'M -Xmx'.$_POST['mem'].'M -jar craftbukkit.jar -o true
 ';
         } else {
 $script = 
 '#!/bin/sh
-cd \"\${0%/*}\"; java -Xms'.$_POST['mem'].'M -Xmx'.$_POST['mem'].'M -jar craftbukkit.jar -o false
+BINDIR=\$(dirname \"\$(readlink -fn \"\$0\")\")
+cd \"\$BINDIR\"
+ java -Xms'.$_POST['mem'].'M -Xmx'.$_POST['mem'].'M -jar craftbukkit.jar -o false
 ';
         }
-        $scriptcmd = 'touch /var/bukkit/startmc.sh && echo -ne "'.$script.'" > /var/bukkit/startmc.sh && echo "Aktion abgeschlossen."';
+        $scriptcmd = 'touch /var/bukkit/startmc.sh && echo -ne "'.$script.'" > /var/bukkit/startmc.sh && chmod 777 /var/bukkit/startmc.sh && echo "Aktion abgeschlossen."';
         $info = $server->execute($scriptcmd);
     } else {
         echo '<span class="error">Die Größe muss eine ganze Zahl sein.</span>';
     }
 
 }
+
+//BINDIR=$(dirname "$(readlink -fn "$0")")
+//cd "$BINDIR"
+
+
 ?>    
 
 <h5>Installation</h5>
@@ -45,7 +54,6 @@ cd \"\${0%/*}\"; java -Xms'.$_POST['mem'].'M -Xmx'.$_POST['mem'].'M -jar craftbu
 <? endif; ?>    
 <div class="halbe-box"> 
     <fieldset>
-        <legend>Bukkit.jar Download</legend>
         <form action="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=1" method="post">
             <p>
                 Hiermit können Sie die aktuellste Bukkit.jar herunterladen. Diese wird unter <code>/var/bukkit/</code> gespeichert. 
@@ -62,7 +70,6 @@ cd \"\${0%/*}\"; java -Xms'.$_POST['mem'].'M -Xmx'.$_POST['mem'].'M -jar craftbu
 </div>
 <div class="halbe-box lastbox">
     <fieldset>
-        <legend>Startskript</legend>
         <form action="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=1" method="post">
             <p>
                 Damit der Bukkit gestartet werden kann, muss ein Startskript her. Dieses wird hiermit automatisch erstellt.

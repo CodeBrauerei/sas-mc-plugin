@@ -27,8 +27,9 @@ $server = \Classes\Main::Server();
         <li><a href="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=1">Installation</a></li>
         <li><a href="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=2">Steuerung</a></li>
         <li><a href="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=3">Status</a></li>
-        <li><a href="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=4">Einstellungen</a></li>
-        <li><a href="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=5">Entfernen</a></li>
+        <li><a href="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=4">Serverlog</a></li>
+        <li><a href="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=5">Einstellungen</a></li>
+        <li><a href="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=6">Entfernen</a></li>
     </ul>
 </div>
 <div class="clearfix"></div>
@@ -46,11 +47,14 @@ if(isset($_GET['spl'])) {
             require 'mc_status.inc.php';
             break;
         case '4':
-            require 'mc_settings.inc.php';
+            require 'mc_serverlog.inc.php';
             break;
         case '5':
-            require 'mc_del.inc.php';
+            require 'mc_settings.inc.php';
             break;
+        case '6':
+            require 'mc_del.inc.php';
+            break;            
         default:
             require 'mc_home.inc.php';
             break;
