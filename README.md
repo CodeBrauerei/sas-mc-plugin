@@ -1,15 +1,19 @@
 SAS-Minecraft-Plugin
 =============
 
-Server-Admin-System - Plugin für Minecraft
+Server-Admin-System - Plugin für Bukkit-Server
 
-**geplante Funktionen:**
+**Funktionen:**
 
 * aktuellsten Bukkit-Server aufsetzen
-* Server steuern (an/aus)
-* Servermessage senden
-* Befehle senden
+* Server steuern (Starten|Stoppen|Befehl ausführen)
+* Status einsehen (online|offline)
+* Serverlog ansehen
+* IP/Spieler blocken
+* Spieler zur Whitelist hinzufügen
+* Spieler als OP festlegen
+* server properties bearbeiten
 * Server löschen
 
-
-
+**Probleme:**
+Der Server lässt sich aktuell nicht starten, da hier merkwürdige Fehler auftreten...
