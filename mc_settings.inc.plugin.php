@@ -49,7 +49,13 @@ if (isset($_POST['prop']))
 		<input type="text" name="uso" class="text-long" placeholder="Username">
 	<?php elseif ($_POST['file'] == 5): ?>
 	<textarea name="prop" id="console" style=>
-<?=$server->execute('cat /var/bukkit/server.properties');?>		
+<?
+$data = $server->execute('cat /var/bukkit/server.properties');
+$arrd = explode("\n", $data);
+foreach ($arrd as $value) {
+	echo trim($value)."\n";
+}
+?>		
 	</textarea>
 	<div class="clearfix"></div><br>
 
