@@ -10,6 +10,15 @@
 */
 
 $server = \Classes\Main::Server();
+
+if (isset($_POST[''])) {
+	$server->execute('rm -r /var/bukkit');
+}
 ?>
-<br>
-<i>in Entwicklung</i>
+<h5>Minecraft löschen</h5>
+<p>
+	Diese Aktion löscht den vollständigen Bukkit-Server.
+</p>
+<form action="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=6" method="post">
+	<input type="submit" name="del" value="Bukkit löschen" class="button pink">
+</form>
