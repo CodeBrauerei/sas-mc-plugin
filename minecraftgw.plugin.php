@@ -9,44 +9,54 @@
 * @author @GabrielWanzek
 *
 */
-$server = \Classes\Main::Server();
-$dlcmd = "mkdir -p /var/bukkit/ && cd /var/bukkit/ && wget -s ".$_POST['dllink'];
-$script = "#!/bin/sh\n
- BINDIR=$(dirname \"$(readlink -fn \"$0\")\")\n
- cd \"$BINDIR\"\n
- java -Xms1024M -Xmx1024M -jar craftbukkit.jar true\n";
 
+set_time_limit(0);
+$info = "";
+$server = \Classes\Main::Server();
+?>
+<style>
+    #menu {margin: auto; text-align: center;}
+    #menu ul {margin:0;padding:0;list-style-type:none;}
+    #menu a {display:block;width:100px;height:20px;line-height:20px;color:#000;background-color:transparent;text-decoration:none;text-align:center; border:3px solid #000;border-radius:5px;-webkit-transition:all .25s ease;-moz-transition:all .25s ease;-ms-transition:all .25s ease;-o-transition:all .25s ease;transition:all .25s ease;}
+    #menu a:hover {background-color:#ccc}
+    #menu li {float:left;margin-right: 3px}
+</style>
+<h3>Minecraft-Plugin</h3>
+<div id="menu">
+    <ul>
+        <li><a href="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=1">Installation</a></li>
+        <li><a href="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=2">Steuerung</a></li>
+        <li><a href="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=3">Status</a></li>
+        <li><a href="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=4">Einstellungen</a></li>
+        <li><a href="?p=plugins&s=show&id=<?=$_GET['id']?>&spl=5">Entfernen</a></li>
+    </ul>
+</div>
+<div class="clearfix"></div>
+
+<?php
+if(isset($_GET['spl'])) {
+    switch ($_GET['spl']) {
+        case '1':
+            require 'mc_install.inc.php';
+            break;
+        case '2':
+            require 'mc_control.inc.php';
+            break;
+        case '3':
+            require 'mc_status.inc.php';
+            break;
+        case '4':
+            require 'mc_settings.inc.php';
+            break;
+        case '5':
+            require 'mc_del.inc.php';
+            break;
+        default:
+            require 'mc_home.inc.php';
+            break;
+    }
+} else {
+    require 'mc_home.inc.php';
+}
 
 ?>
-<h3>Minecraft-Plugin</h3>
-<fieldset>
-	<div class="halbe-box">
-	<legend>Aktionen</legend>
-		<form action="?p=plugin&s=###" method="post">
-			<p>
-				Hiermit können Sie die aktuellste Bukkit.jar herunterladen. Diese wird unter <code>/var/bukkit/</code> gespeichert. 
-				Wenn Sie eine ältere Version möchten, können Sie diese als Downloadlink angeben.
-			</p>
-			<p>
-				<b>bukkit.jar Download-Link</b> (alternativ ändern):<br>
-				<input type="text" class="text-long" name="dllink" value="http://dl.bukkit.org/latest-rb/craftbukkit.jar">
-				<br>
-				<input type="submit" name="dl" value="Herunterladen" class="button black">
-			</p>
-		</form>
-	</div>
-	<div class="halbe-box lastbox">
-		<form action="?p=plugin&s=###" method="post">
-			<p>
-				Damit der Bukkit gestartet werden kann 
-			</p>
-			<p>
-				<b>Arbeitsspeicher für Java (in MB)<br>
-				<input type="text" class="text-long" name="dllink" value="1024">
-				<br>
-				<input type="submit" name="script" value="Script erstellen" class="button black">
-			</p>
-		</form>
-	</div>
-	<div class="clearfix"></div>
-</fieldset>
