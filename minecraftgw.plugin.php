@@ -38,29 +38,29 @@ $server = \Classes\Main::Server();
 if(isset($_GET['spl'])) {
     switch ($_GET['spl']) {
         case '1':
-            require 'mc_install.inc.php';
+            require 'mc_install.inc.plugin.php';
             break;
         case '2':
-            require 'mc_control.inc.php';
+            require 'mc_control.inc.plugin.php';
             break;
         case '3':
-            require 'mc_status.inc.php';
+            require 'mc_status.inc.plugin.php';
             break;
         case '4':
-            require 'mc_serverlog.inc.php';
+            require 'mc_serverlog.inc.plugin.php';
             break;
         case '5':
-            require 'mc_settings.inc.php';
+            require 'mc_settings.inc.plugin.php';
             break;
         case '6':
-            require 'mc_del.inc.php';
+            require 'mc_del.inc.plugin.php';
             break;            
         default:
-            require 'mc_home.inc.php';
+            require 'mc_home.inc.plugin.php';
             break;
     }
 } else {
-    require 'mc_home.inc.php';
+    require 'mc_home.inc.plugin.php';
 }
 
 ?>
